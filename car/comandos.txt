@@ -1,0 +1,52 @@
+[chamar o R]
+
+
+[neste exemplo, o directório com o dataset está dentro do directório com as scripts]
+> setwd("car")
+
+[carregar as scripts the caracterização dos dados]
+> source("../gsi.R", chdir = TRUE)
+Warning messages:
+1: '\.' is an unrecognized escape in a character string 
+2: unrecognized escape removed from "[^\.]+" 
+
+[cálculo do sub-conjunto de meta-features chamada "kCompleteClassificationGSI" para o dataset "car", gravando o resultado no ficheiro "car.gsi]
+> METALCharacterization("car", "car.gsi", kCompleteClassificationGSI)
+Warning messages:
+1: In if (wkProbDescription$attributes$attr.type[[wkAttr]] != "continuous") { :
+  the condition has length > 1 and only the first element will be used
+2: In if (wkProbDescription$attributes$attr.type[[wkAttr]] != "continuous") { :
+  the condition has length > 1 and only the first element will be used
+3: In if (wkProbDescription$attributes$attr.type[[wkAttr]] != "continuous") { :
+  the condition has length > 1 and only the first element will be used
+4: In if (wkProbDescription$attributes$attr.type[[wkAttr]] != "continuous") { :
+  the condition has length > 1 and only the first element will be used
+5: In if (wkProbDescription$attributes$attr.type[[wkAttr]] != "continuous") { :
+  the condition has length > 1 and only the first element will be used
+6: In if (wkProbDescription$attributes$attr.type[[wkAttr]] != "continuous") { :
+  the condition has length > 1 and only the first element will be used
+7: In if (wkProbDescription$attributes$attr.type[[wkAttr]] != "continuous") { :
+  the condition has length > 1 and only the first element will be used
+
+[cálculo do sub-conjunto de meta-features baseadas na matriz de kernel para o dataset "car", gravando o resultado no ficheiro "car.kernel]
+> METALCharacterization("car", "car.kernel", list(name="gaussian_kernel_measures", version="1.0", target.declared = F, measures = c("gaussian.kernel.measures")))
+Warning messages:
+1: In if (wkProbDescription$attributes$attr.type[[wkAttr]] != "continuous") { :
+  the condition has length > 1 and only the first element will be used
+2: In if (wkProbDescription$attributes$attr.type[[wkAttr]] != "continuous") { :
+  the condition has length > 1 and only the first element will be used
+3: In if (wkProbDescription$attributes$attr.type[[wkAttr]] != "continuous") { :
+  the condition has length > 1 and only the first element will be used
+4: In if (wkProbDescription$attributes$attr.type[[wkAttr]] != "continuous") { :
+  the condition has length > 1 and only the first element will be used
+5: In if (wkProbDescription$attributes$attr.type[[wkAttr]] != "continuous") { :
+  the condition has length > 1 and only the first element will be used
+6: In if (wkProbDescription$attributes$attr.type[[wkAttr]] != "continuous") { :
+  the condition has length > 1 and only the first element will be used
+7: In if (wkProbDescription$attributes$attr.type[[wkAttr]] != "continuous") { :
+  the condition has length > 1 and only the first element will be used
+8: In mean.default(dataset$frame[1:min(5000, nrow(dataset$frame)),  :
+  argument is not numeric or logical: returning NA
+9: In Ops.factor(dataset$frame[1:min(5000, nrow(dataset$frame)), dataset$attributes$target.attr],  :
+  - not meaningful for factors
+>

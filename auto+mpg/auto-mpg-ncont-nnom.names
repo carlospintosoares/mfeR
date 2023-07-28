@@ -1,0 +1,9 @@
+mpg.
+mpg: continuous.
+cylinders: continuous.
+displacement: v1,v2,v3,v4.
+horsepower: v1,v2,v3,v4.
+weight: continuous.
+acceleration: continuous.
+model year: continuous.
+origin: a,b,c.

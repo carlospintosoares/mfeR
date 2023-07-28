@@ -1,0 +1,6 @@
+METALGROUP: BRISTOL
+SOURCE: UCI ML
+URL: ftp://ftp.ics.uci.edu/pub/machine-learning-databases/car
+DOMAIN: Car evaluation
+NOTES: fetched from Bristol: http://www.cs.bris.ac.uk/~hilanb/metal/experiments/data/car.tar.gz
+

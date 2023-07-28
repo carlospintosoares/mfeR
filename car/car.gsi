@@ -1,0 +1,37 @@
+dct: version 1.1
+gaussian_kernel_measures: version 1.0
+gaussian_kernel_measures_mean_kernel_value_0_25: 1.65305148429867e-06
+gaussian_kernel_measures_mean_kernel_value_1: 0.0336135998557957
+gaussian_kernel_measures_mean_kernel_value_4: 0.708377222245753
+gaussian_kernel_measures_mean_kernel_value_16: 0.977835076159176
+gaussian_kernel_measures_mean_kernel_value_64: 0.998596597844326
+gaussian_kernel_measures_mean_kernel_value_256: 0.999912215925048
+gaussian_kernel_measures_mean_kernel_value_1000: 0.999994246690997
+gaussian_kernel_measures_mean_kernel_value_4000: 0.999999640416988
+gaussian_kernel_measures_mean_kernel_value_16000: 0.999999977526057
+gaussian_kernel_measures_mean_kernel_value_64000: 0.999999998595379
+gaussian_kernel_measures_mean_kernel_value_256000: 0.999999999912211
+gaussian_kernel_measures_var_kernel_value_0_25: 5.51146983034433e-10
+gaussian_kernel_measures_var_kernel_value_1: 0.00589786859006723
+gaussian_kernel_measures_var_kernel_value_4: 0.0140559015136246
+gaussian_kernel_measures_var_kernel_value_16: 0.000113669478008308
+gaussian_kernel_measures_var_kernel_value_64: 4.65781575509212e-07
+gaussian_kernel_measures_var_kernel_value_256: 1.82492570067868e-09
+gaussian_kernel_measures_var_kernel_value_1000: 7.83946145899851e-12
+gaussian_kernel_measures_var_kernel_value_4000: 3.06232726917859e-14
+gaussian_kernel_measures_var_kernel_value_16000: 1.19622250881743e-16
+gaussian_kernel_measures_var_kernel_value_64000: 4.67274439274115e-19
+gaussian_kernel_measures_var_kernel_value_256000: 1.82529137544895e-21
+gaussian_kernel_measures_kat_0_25: ?
+gaussian_kernel_measures_kat_1: ?
+gaussian_kernel_measures_kat_4: ?
+gaussian_kernel_measures_kat_16: ?
+gaussian_kernel_measures_kat_64: ?
+gaussian_kernel_measures_kat_256: ?
+gaussian_kernel_measures_kat_1000: ?
+gaussian_kernel_measures_kat_4000: ?
+gaussian_kernel_measures_kat_16000: ?
+gaussian_kernel_measures_kat_64000: ?
+gaussian_kernel_measures_kat_256000: ?
+read_time: 0.0239999999999998
+total_time: 23.07

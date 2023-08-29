@@ -24,6 +24,8 @@
 #  Torgo's format)
 
 # CHANGES:
+# (29/08/23 carlos) corrected warning in ReadDataFrame that, from v4.3.0, 
+# is an error
 # (27/07/23 carlos) corrected error in regexpr
 # (07/05/04 carlos) v2.1: removed variables with underscores which are
 # not allowed anymore (Rita's fault!! :-)
@@ -336,7 +338,7 @@ else
 
 for(wkAttr in attr.info$attr.name) 
   {
-    if(attr.info$attr.type[[wkAttr]] != "continuous" && attr.info$attr.type[[wkAttr]] != "nominal") # What is nominal?
+    if(length(attr.info$attr.type[[wkAttr]]) == 1 && attr.info$attr.type[[wkAttr]] != "continuous" && attr.info$attr.type[[wkAttr]] != "nominal") # What is nominal?
       {
         # Anonymize
         if (! is.null(anonymization.table))

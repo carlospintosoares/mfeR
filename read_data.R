@@ -338,8 +338,9 @@ else
 
 for(wkAttr in attr.info$attr.name) 
   {
-    if(length(attr.info$attr.type[[wkAttr]]) == 1 && attr.info$attr.type[[wkAttr]] != "continuous" && attr.info$attr.type[[wkAttr]] != "nominal") # What is nominal?
-      {
+#    if((attr.info$attr.type[[wkAttr]] != "continuous" && attr.info$attr.type[[wkAttr]] != "nominal")) # What is nominal? # NOTE: fails in R v4.3.1
+	if (length(attr.info$attr.type[[wkAttr]]) > 1) # assumes "nominal" doesn't appear 
+		{
         # Anonymize
         if (! is.null(anonymization.table))
           data[, wkAttr] <- anonymization.table[[wkAttr]][as.vector(data[, wkAttr])] # I don't understand the need for as.vector but it works :-)

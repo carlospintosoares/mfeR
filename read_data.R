@@ -24,6 +24,9 @@
 #  Torgo's format)
 
 # CHANGES:
+# (05/01/2024 carlos) corrected ReadDataFrame to deal with numeric values in symbolic variables
+# (29/08/23 carlos) corrected warning in ReadDataFrame that, from v4.3.0, 
+# is an error
 # (27/07/23 carlos) corrected error in regexpr
 # (07/05/04 carlos) v2.1: removed variables with underscores which are
 # not allowed anymore (Rita's fault!! :-)
@@ -36,6 +39,10 @@
 # TODO:
 # -names file can also be given separately (e.g. ignore)
 # -is attributes$attr.name necessary? (== names(attr.type))
+# -correct anonymization (add char prefix)
+# -simplify use of anonymization
+# -improve dealing with nominal attributes that are represented as numbers (in anonymization)
+
 #
 # To have a fast trial on it just do:
 # shell> R
@@ -125,9 +132,14 @@ if (anonymize)
 		  if (wkProbDescription$attributes$attr.type[[wkAttr]][1] != "continuous") # TODO:(28/07/23 carlos) bug corrected? 
 		  #if (wkProbDescription$attributes$attr.type[[wkAttr]] != "continuous")
           {
-            wkAnonymizationTable[[wkAttr]] <- as.character(1:length(wkProbDescription$attributes$attr.type[[wkAttr]]))
-            names(wkAnonymizationTable[[wkAttr]]) <- as.character(wkProbDescription$attributes$attr.type[[wkAttr]])
-            wkProbDescription$attributes$attr.type[[wkAttr]] <- as.character(1:length(wkProbDescription$attributes$attr.type[[wkAttr]]))
+			  # Create vector with anonymized values
+			  wkAnonymizationTable[[wkAttr]] <- as.character(1:length(wkProbDescription$attributes$attr.type[[wkAttr]]))
+			  
+			  # ... and with the original values as names
+			  names(wkAnonymizationTable[[wkAttr]]) <- as.character(wkProbDescription$attributes$attr.type[[wkAttr]])
+			  
+			  # Anonymize values in the description
+			  wkProbDescription$attributes$attr.type[[wkAttr]] <- as.character(1:length(wkProbDescription$attributes$attr.type[[wkAttr]]))
           }
       }
   }
@@ -336,12 +348,19 @@ else
 
 for(wkAttr in attr.info$attr.name) 
   {
-    if(attr.info$attr.type[[wkAttr]] != "continuous" && attr.info$attr.type[[wkAttr]] != "nominal") # What is nominal?
-      {
+#    if((attr.info$attr.type[[wkAttr]] != "continuous" && attr.info$attr.type[[wkAttr]] != "nominal")) # What is nominal? # NOTE: fails in R v4.3.1
+	if (length(attr.info$attr.type[[wkAttr]]) > 1) # assumes "nominal" doesn't appear 
+		{
         # Anonymize
         if (! is.null(anonymization.table))
-          data[, wkAttr] <- anonymization.table[[wkAttr]][as.vector(data[, wkAttr])] # I don't understand the need for as.vector but it works :-)
-
+		{
+			# ... solving the problem of numbers as nominal values
+			names(anonymization.table[[wkAttr]]) <- ValidSymbAttrValues(names(anonymization.table[[wkAttr]]))
+			data[, wkAttr] <- anonymization.table[[wkAttr]][ValidSymbAttrValues(data[, wkAttr])]
+			# data[, wkAttr] <- anonymization.table[[wkAttr]][as.vector(data[, wkAttr])] # I don't understand the need for as.vector but it works :-)
+		}
+			
+          
 	# Factors should include all values in the .names file (e.g. samples)
         f <- factor(data[, wkAttr], levels = attr.info$attr.type[[wkAttr]])
         data[ , wkAttr] <- f	
@@ -350,3 +369,13 @@ for(wkAttr in attr.info$attr.name)
 data
 }
 
+ValidSymbAttrValues <- function(attr.values)
+{
+	# identify values with numbers
+	i.has.number <- !is.na(as.numeric(attr.values)) # TODO (05/01/2024): generates warnings 
+	
+	# add character prefix to numbers
+	attr.values[i.has.number] <- paste0("v", attr.values[i.has.number])
+	
+	attr.values
+}

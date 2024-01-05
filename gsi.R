@@ -18,6 +18,7 @@
 #  'source("PATH_TO_SOURCES/gsi.R", chdir = TRUE)'
 
 # CHANGES:
+# (05/01/2024 carlos) corrected symb.target.fstat.pval for the case when there is a single value and NAs;
 # (28/07/2023 carlos) corrected name of avg.attr.correlation to 
 # avg.abs.attr.correlation; completed minimal set of classification 
 # measures; created the statlog-type and complete sets of GSI measures
@@ -1608,7 +1609,7 @@ if (length(wkSymbAttrs) > 0)
 {
   stfp <- sapply(wkSymbAttrs, function(s, df, t)
                  {
-                   if (length(unique(df[,s])) > 1 )
+					 if (length(unique(df[!is.na(df[,s]),s])) > 1 )
                      {
                        summary(aov(t ~ df[, s], na.action="na.omit"))[[1]]$"Pr(>F)"[1]
                      }
